@@ -1,13 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import createStore from './reducks/store/store';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//./reducks/store/storeで定義したcreateStoreを呼び出している
+//呼び出すことでstoreができる
+export const store = createStore();
+
 ReactDOM.render(
-  <React.StrictMode>
+  //storeというpropsにstoreを渡す。
+  //Providerにstore（createStore()の実行結果）を渡すことでProviderの子要素であるAppでもstoreの情報が使えるようになる
+  <Provider store = {store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
