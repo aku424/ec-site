@@ -1,4 +1,7 @@
 import { formatMs } from '@material-ui/core';
+//redux-thunkの導入
+//非同期処理を待つため
+import thunk from "redux-thunk"
 import {
     createStore as reduxCreateStore,
     //combineReducersはいろいろなstateをまとめる役割がある
@@ -22,7 +25,8 @@ export default function createStore(history){
             users: userReducer
         }),
         applyMiddleware(
-            routerMiddleware(history)
+            routerMiddleware(history),
+            thunk
         )
     )
 } 
